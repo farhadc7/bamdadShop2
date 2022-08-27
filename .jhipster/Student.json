@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20220826141238",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "student",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nationalCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mobileNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "grade",
+      "fieldType": "Grade",
+      "fieldValues": "FIRST,SECOND,THIRD,FORTH,FIFTH",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Student",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "studentPackage",
+      "otherEntityRelationshipName": "student",
+      "ownerSide": true,
+      "relationshipName": "studentPackage",
+      "relationshipType": "many-to-many",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,12 @@
+{
+  "bamdadShop2App": {
+    "Grade": {
+      "null": "",
+      "FIRST": "اول",
+      "SECOND": "دوم",
+      "THIRD": "سوم",
+      "FORTH": "چهارم",
+      "FIFTH": "پنجم"
+    }
+  }
+}

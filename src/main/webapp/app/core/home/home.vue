@@ -1,79 +1,116 @@
 <template>
   <div class="home row">
-    <div class="col-md-3">
-      <span class="hipster img-fluid rounded"></span>
-    </div>
     <div class="col-md-9">
-      <h1 class="display-4" v-text="$t('home.title')">Welcome, Java Hipster!</h1>
-      <p class="lead" v-text="$t('home.subtitle')">This is your homepage</p>
-
-      <div>
-        <div class="alert alert-success" v-if="authenticated">
-          <span v-if="username" v-text="$t('home.logged.message', { username: username })">You are logged in as user "{{ username }}"</span>
-        </div>
-
-        <div class="alert alert-warning" v-if="!authenticated">
-          <span v-text="$t('global.messages.info.authenticated.prefix')">If you want to </span>
-          <a class="alert-link" v-on:click="openLogin()" v-text="$t('global.messages.info.authenticated.link')">sign in</a
-          ><span v-html="$t('global.messages.info.authenticated.suffix')"
-            >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-            password="user").</span
+      <div id="start-farhad">
+        <div
+          center
+          href="javascript:void(0);"
+          id="account-menu"
+          :class="{ 'router-link-active': subIsActive('/account') }"
+          active-class="active"
+          class="pointer"
+          data-cy="accountMenu"
+        >
+          <span slot="button-content" class="navbar-dropdown-menu">
+            <font-awesome-icon icon="user" />
+            <span class="no-bold" v-text="$t('global.menu.account.main')"> Account </span>
+          </span>
+          <b-dropdown-item data-cy="settings" to="/account/settings" tag="b-dropdown-item" v-if="authenticated" active-class="active">
+            <font-awesome-icon icon="wrench" />
+            <span v-text="$t('global.menu.account.settings')">Settings</span>
+          </b-dropdown-item>
+          <b-dropdown-item data-cy="passwordItem" to="/account/password" tag="b-dropdown-item" v-if="authenticated" active-class="active">
+            <font-awesome-icon icon="lock" />
+            <span v-text="$t('global.menu.account.password')">Password</span>
+          </b-dropdown-item>
+          <b-dropdown-item data-cy="logout" v-if="authenticated" v-on:click="logout()" id="logout" active-class="active">
+            <font-awesome-icon icon="sign-out-alt" />
+            <span v-text="$t('global.menu.account.logout')">Sign out</span>
+          </b-dropdown-item>
+          <b-dropdown-item data-cy="login" v-if="!authenticated" v-on:click="openLogin()" id="login" active-class="active">
+            <font-awesome-icon icon="sign-in-alt" />
+            <span v-text="$t('global.menu.account.login')">Sign in</span>
+          </b-dropdown-item>
+          <b-dropdown-item
+            data-cy="register"
+            to="/register"
+            tag="b-dropdown-item"
+            id="register"
+            v-if="!authenticated"
+            active-class="active"
           >
-        </div>
-        <div class="alert alert-warning" v-if="!authenticated">
-          <span v-text="$t('global.messages.info.register.noaccount')">You don't have an account yet?</span>&nbsp;
-          <router-link class="alert-link" to="/register" v-text="$t('global.messages.info.register.link')"
-            >Register a new account</router-link
-          >
+            <font-awesome-icon icon="user-plus" />
+            <span v-text="$t('global.menu.account.register')">Register</span>
+          </b-dropdown-item>
         </div>
       </div>
 
-      <p v-text="$t('home.question')">If you have any question on JHipster:</p>
 
-      <ul>
-        <li>
-          <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer" v-text="$t('home.link.homepage')"
-            >JHipster homepage</a
-          >
-        </li>
-        <li>
-          <a
-            href="http://stackoverflow.com/tags/jhipster/info"
-            target="_blank"
-            rel="noopener noreferrer"
-            v-text="$t('home.link.stackoverflow')"
-            >JHipster on Stack Overflow</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://github.com/jhipster/generator-jhipster/issues?state=open"
-            target="_blank"
-            rel="noopener noreferrer"
-            v-text="$t('home.link.bugtracker')"
-            >JHipster bug tracker</a
-          >
-        </li>
-        <li>
-          <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" v-text="$t('home.link.chat')"
-            >JHipster public chat room</a
-          >
-        </li>
-        <li>
-          <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer" v-text="$t('home.link.follow')"
-            >follow @jhipster on Twitter</a
-          >
-        </li>
-      </ul>
 
-      <p>
-        <span v-text="$t('home.like')">If you like JHipster, don't forget to give us a star on</span>
-        <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" v-text="$t('home.github')"
-          >GitHub</a
-        >!
-      </p>
+
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <b-alert show data-cy="loginError" variant="danger" v-if="authenticationError" v-html="$t('login.messages.error.authentication')">
+              <strong>Failed to sign in!</strong> Please check your credentials and try again.
+            </b-alert>
+          </div>
+          <div class="col-md-8">
+            <b-form role="form" v-on:submit.prevent="doLogin()">
+              <b-form-group v-bind:label="$t('global.form[\'username.label\']')" label-for="username">
+                <b-form-input
+                  id="username"
+                  type="text"
+                  name="username"
+                  autofocus
+                  v-bind:placeholder="$t('global.form[\'username.placeholder\']')"
+                  v-model="login"
+                  data-cy="username"
+                >
+                </b-form-input>
+              </b-form-group>
+              <b-form-group v-bind:label="$t('login.form.password')" label-for="password">
+                <b-form-input
+                  id="password"
+                  type="password"
+                  name="password"
+                  v-model.trim="name"
+                  v-bind:placeholder="$t('login.form[\'password.placeholder\']')"
+                  v-model="password"
+                  data-cy="password"
+                >
+                </b-form-input>
+              </b-form-group>
+              <b-form-checkbox id="rememberMe" name="rememberMe" v-model="rememberMe" checked>
+                <span v-text="$t('login.form.rememberme')">Remember me</span>
+              </b-form-checkbox>
+              <div>
+                <b-button data-cy="submit" type="submit" variant="primary" v-text="$t('login.form.button')">Sign in</b-button>
+              </div>
+            </b-form>
+            <p></p>
+            <div>
+              <b-alert show variant="warning">
+                <b-link
+                  :to="'/account/reset/request'"
+                  class="alert-link"
+                  v-text="$t('login.password.forgot')"
+                  data-cy="forgetYourPasswordSelector"
+                >Did you forget your password?</b-link
+                >
+              </b-alert>
+            </div>
+            <div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </template>
 
 <script lang="ts" src="./home.component.ts"></script>
+

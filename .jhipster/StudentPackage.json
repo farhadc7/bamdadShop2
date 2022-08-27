@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20220826141239",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "student_package",
+  "fields": [
+    {
+      "fieldName": "packageName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "grade",
+      "fieldType": "Grade",
+      "fieldValues": "FIRST,SECOND,THIRD,FORTH,FIFTH"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "StudentPackage",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "studentPackage",
+      "ownerSide": false,
+      "relationshipName": "student",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

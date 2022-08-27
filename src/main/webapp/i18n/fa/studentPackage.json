@@ -1,0 +1,26 @@
+{
+  "bamdadShop2App": {
+    "studentPackage": {
+      "home": {
+        "title": "Student Packages",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Student Package",
+        "createOrEditLabel": "Create or edit a Student Package",
+        "notFound": "No Student Packages found"
+      },
+      "created": "A new Student Package is created with identifier {{ param }}",
+      "updated": "A Student Package is updated with identifier {{ param }}",
+      "deleted": "A Student Package is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Student Package {{ id }}?"
+      },
+      "detail": {
+        "title": "Student Package"
+      },
+      "id": "ID",
+      "packageName": "Package Name",
+      "grade": "Grade",
+      "student": "Student"
+    }
+  }
+}

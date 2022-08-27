@@ -1,0 +1,25 @@
+
+entity Student {
+  firstName String required,
+  lastName String required,
+  nationalCode String,
+  mobileNumber String,
+  grade Grade
+
+}
+
+entity StudentPackage{
+  packageName String,
+  grade Grade
+
+}
+relationship ManyToMany{
+    Student to StudentPackage
+}
+enum Grade{
+    FIRST,
+    SECOND,
+    THIRD,
+    FORTH,
+    FIFTH
+}

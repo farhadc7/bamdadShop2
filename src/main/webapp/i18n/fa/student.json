@@ -1,0 +1,29 @@
+{
+  "bamdadShop2App": {
+    "student": {
+      "home": {
+        "title": "Students",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Student",
+        "createOrEditLabel": "جهت ثبت درخواست فرم زیر را پر نمایید.",
+        "notFound": "No Students found"
+      },
+      "created": "درخواست شما با موفقیت ثبت گردید.",
+      "updated": "درخواست شما با موفقیت ویرایش شد.",
+      "deleted": "A Student is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Student {{ id }}?"
+      },
+      "detail": {
+        "title": "Student"
+      },
+      "id": "ID",
+      "firstName": "نام دانش آموز",
+      "lastName": "نام خانوادگی دانش آموز",
+      "nationalCode": "National Code",
+      "mobileNumber": "شماره موبایل (متصل به واتساپ)- شماره تماس فقط شامل اعداد باشد.",
+      "grade": "پایه",
+      "studentPackage": "یک یا چند بسته نوشت افزاری را انتخاب نمایید."
+    }
+  }
+}
