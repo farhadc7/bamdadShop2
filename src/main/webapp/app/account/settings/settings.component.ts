@@ -15,6 +15,11 @@ const validations = {
       minLength: minLength(1),
       maxLength: maxLength(50),
     },
+    mobileNumber: {
+      required,
+      minLength: minLength(1),
+      maxLength: maxLength(50),
+    },
     email: {
       required,
       email,

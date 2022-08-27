@@ -60,6 +60,48 @@
               </small>
             </div>
           </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="mobileNumber" v-text="$t('settings.form.mobileNumber')">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="mobileNumber"
+              name="mobileNumber"
+              v-bind:placeholder="$t('settings.form[\'mobileNumber.placeholder\']')"
+              :class="{ valid: !$v.settingsAccount.mobileNumber.$invalid, invalid: $v.settingsAccount.mobileNumber.$invalid }"
+              v-model="$v.settingsAccount.mobileNumber.$model"
+              minlength="1"
+              maxlength="50"
+              required
+              data-cy="mobileNumber"
+            />
+            <div v-if="$v.settingsAccount.mobileNumber.$anyDirty && $v.settingsAccount.mobileNumber.$invalid">
+              <small
+                class="form-text text-danger"
+                v-if="!$v.settingsAccount.mobileNumber.required"
+                v-text="$t('settings.messages.validate.mobileNumber.required')"
+              >
+                Your first name is required.
+              </small>
+              <small
+                class="form-text text-danger"
+                v-if="!$v.settingsAccount.mobileNumber.minLength"
+                v-text="$t('settings.messages.validate.mobileNumber.minlength')"
+              >
+                Your first name is required to be at least 1 character.
+              </small>
+              <small
+                class="form-text text-danger"
+                v-if="!$v.settingsAccount.mobileNumber.maxLength"
+                v-text="$t('settings.messages.validate.mobileNumber.maxlength')"
+              >
+                Your first name cannot be longer than 50 characters.
+              </small>
+            </div>
+          </div>
+
+
           <div class="form-group">
             <label class="form-control-label" for="lastName" v-text="$t('settings.form.lastname')">Last Name</label>
             <input

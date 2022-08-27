@@ -1,52 +1,6 @@
 <template>
   <div class="home row">
     <div class="col-md-9">
-      <div id="start-farhad">
-        <div
-          center
-          href="javascript:void(0);"
-          id="account-menu"
-          :class="{ 'router-link-active': subIsActive('/account') }"
-          active-class="active"
-          class="pointer"
-          data-cy="accountMenu"
-        >
-          <span slot="button-content" class="navbar-dropdown-menu">
-            <font-awesome-icon icon="user" />
-            <span class="no-bold" v-text="$t('global.menu.account.main')"> Account </span>
-          </span>
-          <b-dropdown-item data-cy="settings" to="/account/settings" tag="b-dropdown-item" v-if="authenticated" active-class="active">
-            <font-awesome-icon icon="wrench" />
-            <span v-text="$t('global.menu.account.settings')">Settings</span>
-          </b-dropdown-item>
-          <b-dropdown-item data-cy="passwordItem" to="/account/password" tag="b-dropdown-item" v-if="authenticated" active-class="active">
-            <font-awesome-icon icon="lock" />
-            <span v-text="$t('global.menu.account.password')">Password</span>
-          </b-dropdown-item>
-          <b-dropdown-item data-cy="logout" v-if="authenticated" v-on:click="logout()" id="logout" active-class="active">
-            <font-awesome-icon icon="sign-out-alt" />
-            <span v-text="$t('global.menu.account.logout')">Sign out</span>
-          </b-dropdown-item>
-          <b-dropdown-item data-cy="login" v-if="!authenticated" v-on:click="openLogin()" id="login" active-class="active">
-            <font-awesome-icon icon="sign-in-alt" />
-            <span v-text="$t('global.menu.account.login')">Sign in</span>
-          </b-dropdown-item>
-          <b-dropdown-item
-            data-cy="register"
-            to="/register"
-            tag="b-dropdown-item"
-            id="register"
-            v-if="!authenticated"
-            active-class="active"
-          >
-            <font-awesome-icon icon="user-plus" />
-            <span v-text="$t('global.menu.account.register')">Register</span>
-          </b-dropdown-item>
-        </div>
-      </div>
-
-
-
 
       <div class="modal-body">
         <div class="row justify-content-center">
@@ -89,17 +43,7 @@
               </div>
             </b-form>
             <p></p>
-            <div>
-              <b-alert show variant="warning">
-                <b-link
-                  :to="'/account/reset/request'"
-                  class="alert-link"
-                  v-text="$t('login.password.forgot')"
-                  data-cy="forgetYourPasswordSelector"
-                >Did you forget your password?</b-link
-                >
-              </b-alert>
-            </div>
+
             <div>
 
             </div>

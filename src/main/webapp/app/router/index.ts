@@ -8,7 +8,7 @@ Component.registerHooks([
 import Router, { RouteConfig } from 'vue-router';
 
 const Home = () => import('@/core/home/home.vue');
-const Error = () => import('@/core/error/error.vue');
+const Error = () => import('@/core/home/home.vue');
 import account from '@/router/account';
 import admin from '@/router/admin';
 import entities from '@/router/entities';

@@ -1,0 +1,11 @@
+entity Student {
+  firstName String required,
+  lastName String required,
+  nationalCode String,
+  mobileNumber String,
+  grade String
+}
+entity StationaryPackage {
+  packageName String,
+  grade String
+}
